@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mystudy.mock.MockMapper">
+    <select id="getMock" resultType="java.util.HashMap">
+        SELECT * FROM mock_data_csv;
+    </select>
+    <select id="getRandomRow" resultType="com.mystudy.mock.domain.RandomVo">
+		select
+		(select first_name from mock_data_csv mdc order by rand() limit 1) first_name ,
+		(select last_name from mock_data_csv mdc order by rand() limit 1) last_name ,
+		(select email from mock_data_csv mdc order by rand() limit 1) email ,
+		(select gender from mock_data_csv mdc order by rand() limit 1) gender ,
+		(select username from mock_data_csv mdc order by rand() limit 1) username ,
+		(select `datetime` from mock_data_csv mdc order by rand() limit 1) `datetime` ,
+		(select img_url from mock_data_csv mdc order by rand() limit 1) img_url ,
+		(select `language` from mock_data_csv mdc order by rand() limit 1) `language` 
+    </select>
+    
+    
+    <insert id="insertTb2DocInfo" parameterType="com.mystudy.mock.domain.Tb2DocInfoVo">
+    	insert into tb2_doc_info
+    	values (#{docNo}, #{regDt}, null, #{regId}, null, null, #{docTitle})
+    </insert>
+    
+    <insert id="insertMock" parameterType="java.util.HashMap">
+    	
+    </insert>
+    
+    <delete id="deleteTb2DocInfo">
+    	delete from tb2_doc_info
+    </delete>
+    <delete id="deleteTb2ExpendInfo">
+    	delete from TB2_EXPEND_INFO
+    </delete>
+    <delete id="deleteTb2ExpendDetail">
+    	delete from TB2_EXPEND_DETAIL
+    </delete>
+    <delete id="deleteTb2DraftInfo">
+    	delete from TB2_DRAFT_INFO
+    </delete>
+    <delete id="deleteTb2PurchaseInfo">
+    	delete from TB2_PURCHASE_INFO
+    </delete>
+    <delete id="deleteTb2PurchaseDetail">
+    	delete from TB2_PURCHASE_DETAIL
+    </delete>
+    <delete id="deleteTb2NewdocInfo">
+    	delete from TB2_NEWDOC_INFO
+    </delete>
+    <delete id="deleteTb2NewdocDetail">
+    	delete from TB2_NEWDOC_DETAIL
+    </delete>
+    
+    
+    <delete id="deleteTbDocInfo2">
+    	delete from TB_DOC_INFO2
+    </delete>
+    <delete id="deleteTbDoctypeMaster">
+    	delete from TB_DOCTYPE_MASTER
+    </delete>
+    <delete id="deleteTbDetail">
+    	delete from TB_DETAIL
+    </delete>
+    <delete id="deleteTbDetailMaster">
+    	delete from TB_DETAIL_MASTER
+    </delete>
+</mapper>
